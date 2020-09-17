@@ -1,4 +1,4 @@
-import requests,schedule,time
+import schedule,time
 from discord import Webhook, RequestsWebhookAdapter
 from discord.ext import tasks
 
