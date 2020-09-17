@@ -1,3 +1,2 @@
 schedule==0.6.0
-time
 discord
