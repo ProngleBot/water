@@ -1,20 +1,18 @@
-import time,discord
-from discord_webhook import DiscordWebhook
-from discord.ext import commands,tasks
+import requests,schedule,time
+from discord import Webhook, RequestsWebhookAdapter
+from discord.ext import tasks
 
-@tasks.loop(hours=1)
-async def waterrem():
-    webhookiboi = await fetch_webhook('i3OXo7ct-D2tamzXgbGp6uzbMbN5aaYHYcagiAWeuuAZCrISo_qtyJKa8r0RmLd2fdof')
-    webhook = DiscordWebhook(url=f'https://discordapp.com/api/webhooks/752113109904392193/{webhookiboi}', content='<@&753266209633337405> drink water')
-    webhook.execute()
-    print("shit worked")
-
-@tasks.loop(hours=3)
-async def stretch(webhook_id):
-    webhookiboi = await fetch_webhook('i3OXo7ct-D2tamzXgbGp6uzbMbN5aaYHYcagiAWeuuAZCrISo_qtyJKa8r0RmLd2fdof')
-    webhook = DiscordWebhook(url=f'https://discordapp.com/api/webhooks/752113109904392193/{webhookiboi}', content='<@&753266209633337405> Stand up and walk around!')
-    webhook.execute()
-    print("shit worked")
-
-waterrem.start()
-stretch.start()
+def water():
+    webhook = Webhook.partial(752113109904392193,'i3OXo7ct-D2tamzXgbGp6uzbMbN5aaYHYcagiAWeuuAZCrISo_qtyJKa8r0RmLd2fdof', adapter=RequestsWebhookAdapter())
+    webhook.send('<@&753266209633337405> Drink water ILY!!')
+    print('drank')
+def walk():
+    webhook = Webhook.partial(752113109904392193,'i3OXo7ct-D2tamzXgbGp6uzbMbN5aaYHYcagiAWeuuAZCrISo_qtyJKa8r0RmLd2fdof', adapter=RequestsWebhookAdapter())
+    webhook.send('<@&753266209633337405> Take a break and walk around :heart: :heart: ily!!')
+    print('walked')
+# schedule.every(1).hour.do(water)
+# schedule.every(6).hours.do(walk)
+schedule.every(1).hours.do(water)
+schedule.every(3).seconds.do(walk)
+while True:
+    schedule.run_pending()
