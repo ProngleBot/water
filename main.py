@@ -13,6 +13,6 @@ def walk():
 # schedule.every(1).hour.do(water)
 # schedule.every(6).hours.do(walk)
 schedule.every(1).hours.do(water)
-schedule.every(3).seconds.do(walk)
+schedule.every(3).hours.do(walk)
 while True:
     schedule.run_pending()
