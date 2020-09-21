@@ -1,7 +1,7 @@
 import schedule,time
 from discord import Webhook, RequestsWebhookAdapter
 from discord.ext import tasks
-print('Penis')
+
 def water():
     webhook = Webhook.partial(752113109904392193,'i3OXo7ct-D2tamzXgbGp6uzbMbN5aaYHYcagiAWeuuAZCrISo_qtyJKa8r0RmLd2fdof', adapter=RequestsWebhookAdapter())
     webhook.send('<@&753266209633337405> Drink water ILY!!')
